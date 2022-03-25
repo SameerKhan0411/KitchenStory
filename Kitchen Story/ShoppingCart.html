@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <meta name="description" content="Free Web tutorials">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+    <meta name="author" content="Sameer Khan">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <style>
+        body{
+            background-image: url('images/1324396.png');
+            background-size: contain;
+        }
+        span{
+            color:black;
+           
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.637);
+            width: 99%;
+            border: 10px solid green;
+            padding: 2px;
+            margin: 20px;
+        }
+
+
+        #a{
+            padding:225px;
+            
+        }
+        #b{
+            padding-left:225px;
+        }
+        #c{
+            padding-left:450px;
+        }
+        .table {
+            background-color: rgb(231, 222, 222);
+            width: 100%;
+            border: 10px solid green;
+            padding: 2px;
+            margin: 20px;
+        }
+
+        .cart {
+            background-image: url(images/food.jpg);
+            height: 110px;
+            background-attachment: auto;
+            background-position: center;
+            background-repeat: auto;
+            background-size: auto;
+        }
+
+        .title {
+            text-align: center;
+            font-size: xx-large;
+            background: rgba(0,0,0,0.5);
+            text-align: center;
+            color: white;
+            padding: auto;
+            font-variant: small-caps;
+            font-size: 500%;
+            font-family: auto;
+            letter-spacing: auto;
+        }
+        /* .total{
+            float:center;
+            padding-right:auto;
+        } */
+        .placebutton {
+            padding-right: auto;
+        }
+        
+        .button {
+            font-size: auto;
+            transition-duration: 0.4s;
+            float:right;
+            
+           
+        }
+            .button:hover {
+                background-color: white;
+            }
+    .copyrights {
+    font-size: auto;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: left;
+    margin: auto;
+    }
+
+    .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(69, 255, 52);
+    color: rgb(0, 0, 0);
+    text-align: center
+    }
+    </style>
+    <meta charset="utf-8" />
+    <title>Kitchen Story Shopping Cart</title>
+    
+    <script>
+        
+        function Loadinformation() {
+
+            var olddata = sessionStorage.getItem("Cartdetails");
+            addTable(olddata);
+            document.getElementById('lblCardDetails').innerHTML = olddata;
+
+        }
+
+        function addRow(soupname, lb, Price) {
+
+
+
+            var rowCount = table.rows.length;
+            
+            var row = table.insertRow(rowCount);
+
+            row.insertCell(0).innerHTML = product;
+            row.insertCell(1).innerHTML = lb;
+            row.insertCell(2).innerHTML = Price;
+
+        }
+
+        function addTable(olddata) {
+
+            var myTableDiv = document.getElementById("myDynamicTable");
+            
+            var table = document.createElement('TABLE');
+            table.border = '1';
+            table.className = "table";
+            
+            var tableBody = document.createElement('TBODY');
+            table.appendChild(tableBody);
+
+
+
+            var rows = olddata.split(';');
+
+
+
+            for (var i = 0; i < rows.length; i++) {
+                var tr = document.createElement('TR');
+                tableBody.appendChild(tr);
+
+                var columns = rows[i].split('~');
+                var product = columns[0];
+                var lb = columns[1];
+                var price = columns[2];
+
+
+                for (var j = 0; j < 3; j++) {
+                    var td = document.createElement('TD');
+                    td.width = '250';
+                    
+                    td.appendChild(document.createTextNode(columns[j]));
+                    tr.appendChild(td);
+                }
+            }
+
+            myTableDiv.appendChild(table);
+
+        }
+
+
+    </script>
+</head>
+<body onload="javascript:Loadinformation();">
+    <div class="cart">
+        <div class="title"><b>Shopping Cart</b></div>
+        <div class="container">
+        <span id="a">Product</span>
+        <span id="b">Quantity</span>
+        <span id="c">Total Price(Rs)</span>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <div id="myDynamicTable"> </div>
+    <br/>
+    <br/><br/>
+    <div class="placebutton"><a href="SuccessfulOrder.html"><input type="submit" class="button" value="Place Order" /></a><br/><br/></div>
+    
+    <div class="footer">
+    <div class="copyrights">
+           Sameer Khan
+        </div>
+    </div>
+
+</body>
+</html>
